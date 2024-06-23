@@ -1,40 +1,54 @@
-// Global variable to store the classifier
-let classifier
+// more documentation available at
+// https://github.com/tensorflow/tfjs-models/tree/master/speech-commands
 
-// Label
-let label = "listening..."
+// the link to your model provided by Teachable Machine export panel
+const URL = "https://teachablemachine.withgoogle.com/models/3LkoYi1Rt/"
 
-// Teachable Machine model URL:
-let soundModel = "https://teachablemachine.withgoogle.com/models/3LkoYi1Rt/"
+async function createModel() {
+    const checkpointURL = URL + "model.json" // model topology
+    const metadataURL = URL + "metadata.json" // model metadata
 
-function preload() {
-    // Load the model
-    classifier = ml5.soundClassifier(soundModel + "model.json")
+    const recognizer = speechCommands.create(
+        "BROWSER_FFT", // fourier transform type, not useful to change
+        undefined, // speech commands vocabulary feature, not useful for your models
+        checkpointURL,
+        metadataURL
+    )
+
+    // check that model and metadata are loaded via HTTPS requests.
+    await recognizer.ensureModelLoaded()
+
+    return recognizer
 }
 
-function setup() {
-    createCanvas(320, 240)
-    // Start classifying
-    // The sound model will continuously listen to the microphone
-    classifier.classify(gotResult)
-}
-
-function draw() {
-    background(0)
-    // Draw the label in the canvas
-    fill(255)
-    textSize(32)
-    textAlign(CENTER, CENTER)
-    text(label, width / 2, height / 2)
-}
-
-// The model recognizing a sound will trigger this event
-function gotResult(error, results) {
-    if (error) {
-        console.error(error)
-        return
+async function init() {
+    const recognizer = await createModel()
+    const classLabels = recognizer.wordLabels() // get class labels
+    const labelContainer = document.getElementById("label-container")
+    for (let i = 0; i < classLabels.length; i++) {
+        labelContainer.appendChild(document.createElement("div"))
     }
-    // The results are in an array ordered by confidence.
-    // console.log(results[0]);
-    label = results[0].label
+
+    // listen() takes two arguments:
+    // 1. A callback function that is invoked anytime a word is recognized.
+    // 2. A configuration object with adjustable fields
+    recognizer.listen(
+        (result) => {
+            const scores = result.scores // probability of prediction for each class
+            // render the probability scores per class
+            for (let i = 0; i < classLabels.length; i++) {
+                const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2)
+                labelContainer.childNodes[i].innerHTML = classPrediction
+            }
+        },
+        {
+            includeSpectrogram: true, // in case listen should return result.spectrogram
+            probabilityThreshold: 0.75,
+            invokeCallbackOnNoiseAndUnknown: true,
+            overlapFactor: 0.5, // probably want between 0.5 and 0.75. More info in README
+        }
+    )
+
+    // Stop the recognition in 5 seconds.
+    // setTimeout(() => recognizer.stopListening(), 5000);
 }
