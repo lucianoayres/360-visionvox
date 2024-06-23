@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>YouTube Player</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <div class="video-background">
+            <div id="player"></div>
+        </div>
+
+        <div class="controls">
+            <!-- Control Buttons -->
+            <button id="playButton" aria-label="Play Video">Play</button>
+            <button id="pauseButton" aria-label="Pause Video">Pause</button>
+            <button id="stopButton" aria-label="Stop Video">Stop</button>
+            <button id="nextButton" aria-label="Next Video">Next Video</button>
+            <button id="previousButton" aria-label="Previous Video">Previous Video</button>
+            <button id="upButton" aria-label="Up">Up</button>
+            <button id="downButton" aria-label="Down">Down</button>
+            <button id="leftButton" aria-label="Left">Left</button>
+            <button id="rightButton" aria-label="Right">Right</button>
+            <button id="zoomInButton">Zoom In</button>
+            <button id="zoomOutButton">Zoom Out</button>
+        </div>
+
+        <button id="infoButton" class="info-button">Info</button>
+        <button id="muteButton" class="mute-button">Mute</button>
+
+        <div id="overlay" class="overlay">
+            <div class="overlay-content">
+                <span id="closeButton" class="close-button">&times;</span>
+                <h1>AI 360 Vision+Voice Control</h1>
+                <h2>Instructions</h2>
+                <p>Here are the instructions for using the YouTube Player:</p>
+                <ul>
+                    <li>Play: Click the "Play" button to start the video.</li>
+                    <li>Pause: Click the "Pause" button to pause the video.</li>
+                    <li>Stop: Click the "Stop" button to stop the video.</li>
+                    <li>Next: Click the "Next Video" button to play the next video.</li>
+                    <li>Previous: Click the "Previous Video" button to play the previous video.</li>
+                    <li>Up/Down/Left/Right: Use these buttons to move the video position.</li>
+                    <li>Zoom In/Out: Use these buttons to zoom in or out of the video.</li>
+                </ul>
+            </div>
+        </div>
+
+        <script src="https://www.youtube.com/iframe_api" async defer></script>
+        <script src="js/script.js" defer></script>
+    </body>
+</html>
