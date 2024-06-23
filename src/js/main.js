@@ -35,6 +35,10 @@ const pauseVideo = () => player.pauseVideo()
 const stopVideo = () => player.stopVideo()
 const nextVideo = () => player.nextVideo()
 const previousVideo = () => player.previousVideo()
+const muteVideo = () => player.mute()
+const unmuteVideo = () => player.unMute()
+let zoomIn = null
+let zoomOut = null
 
 document.getElementById("playButton").addEventListener("click", playVideo)
 document.getElementById("pauseButton").addEventListener("click", pauseVideo)
@@ -86,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
         player.setSphericalProperties({ yaw })
     }
 
-    const zoomIn = () => {
+    zoomIn = () => {
         if (fov > MIN_FOV) {
             fov = Math.max(fov - FOV_STEP, MIN_FOV)
             player.setSphericalProperties({ fov })
@@ -95,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    const zoomOut = () => {
+    zoomOut = () => {
         if (fov < MAX_FOV) {
             fov = Math.min(fov + FOV_STEP, MAX_FOV)
             player.setSphericalProperties({ fov })
@@ -164,10 +168,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     muteButton.addEventListener("click", () => {
         if (player.isMuted()) {
-            player.unMute()
+            unmuteVideo()
             muteButton.textContent = "Mute"
         } else {
-            player.mute()
+            muteVideo()
             muteButton.textContent = "Unmute"
         }
     })

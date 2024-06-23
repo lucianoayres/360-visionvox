@@ -2,7 +2,7 @@
 // https://github.com/tensorflow/tfjs-models/tree/master/speech-commands
 
 // the link to your model provided by Teachable Machine export panel
-const URL = "https://teachablemachine.withgoogle.com/models/3LkoYi1Rt/"
+const URL = "https://teachablemachine.withgoogle.com/models/xzabGoz7u/"
 
 async function createModel() {
     const checkpointURL = URL + "model.json" // model topology
@@ -24,10 +24,11 @@ async function createModel() {
 async function init() {
     const recognizer = await createModel()
     const classLabels = recognizer.wordLabels() // get class labels
-    const labelContainer = document.getElementById("label-container")
-    for (let i = 0; i < classLabels.length; i++) {
-        labelContainer.appendChild(document.createElement("div"))
-    }
+    console.log({ classLabels })
+    // const labelContainer = document.getElementById("label-container")
+    // for (let i = 0; i < classLabels.length; i++) {
+    //     labelContainer.appendChild(document.createElement("div"))
+    // }
 
     // listen() takes two arguments:
     // 1. A callback function that is invoked anytime a word is recognized.
@@ -37,8 +38,53 @@ async function init() {
             const scores = result.scores // probability of prediction for each class
             // render the probability scores per class
             for (let i = 0; i < classLabels.length; i++) {
-                const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2)
-                labelContainer.childNodes[i].innerHTML = classPrediction
+                //const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2)
+                // labelContainer.childNodes[i].innerHTML = classPrediction
+                const classPrediction = {
+                    label: classLabels[i],
+                    //score: result.scores[i].toFixed(2),
+                    score: result.scores[i],
+                }
+
+                if (classPrediction.score >= 0.8) {
+                    console.log(classPrediction)
+                    if (classPrediction.label === "play") {
+                        console.log(classPrediction)
+                        playVideo()
+                    }
+                    if (classPrediction.label === "stop") {
+                        console.log(classPrediction)
+                        stopVideo()
+                    }
+                    if (classPrediction.label === "pause") {
+                        console.log(classPrediction)
+                        pauseVideo()
+                    }
+                    if (classPrediction.label === "next") {
+                        console.log(classPrediction)
+                        nextVideo()
+                    }
+                    if (classPrediction.label === "previous") {
+                        console.log(classPrediction)
+                        previousVideo()
+                    }
+                    if (classPrediction.label === "mute") {
+                        console.log(classPrediction)
+                        muteVideo()
+                    }
+                    if (classPrediction.label === "unmute") {
+                        console.log(classPrediction)
+                        unmuteVideo()
+                    }
+                    if (classPrediction.label === "in") {
+                        console.log(classPrediction)
+                        zoomIn()
+                    }
+                    if (classPrediction.label === "out") {
+                        console.log(classPrediction)
+                        zoomOut()
+                    }
+                }
             }
         },
         {
