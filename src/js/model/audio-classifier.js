@@ -1,38 +1,13 @@
-// more documentation available at
-// https://github.com/tensorflow/tfjs-models/tree/master/speech-commands
-
-// the link to your model provided by Teachable Machine export panel
-const URL = "https://teachablemachine.withgoogle.com/models/xzabGoz7u/"
-
 async function createModel() {
-    const checkpointURL = URL + "model.json" // model topology
-    const metadataURL = URL + "metadata.json" // model metadata
-
-    const recognizer = speechCommands.create(
-        "BROWSER_FFT", // fourier transform type, not useful to change
-        undefined, // speech commands vocabulary feature, not useful for your models
-        checkpointURL,
-        metadataURL
-    )
-
-    // check that model and metadata are loaded via HTTPS requests.
+    const recognizer = speechCommands.create("BROWSER_FFT", undefined, CHECKPOINT_URL, METADATA_URL)
     await recognizer.ensureModelLoaded()
-
     return recognizer
 }
 
 async function init() {
     const recognizer = await createModel()
     const classLabels = recognizer.wordLabels() // get class labels
-    console.log({ classLabels })
-    // const labelContainer = document.getElementById("label-container")
-    // for (let i = 0; i < classLabels.length; i++) {
-    //     labelContainer.appendChild(document.createElement("div"))
-    // }
 
-    // listen() takes two arguments:
-    // 1. A callback function that is invoked anytime a word is recognized.
-    // 2. A configuration object with adjustable fields
     recognizer.listen(
         (result) => {
             const scores = result.scores // probability of prediction for each class
@@ -42,59 +17,39 @@ async function init() {
                 // labelContainer.childNodes[i].innerHTML = classPrediction
                 const classPrediction = {
                     label: classLabels[i],
-                    //score: result.scores[i].toFixed(2),
                     score: result.scores[i],
                 }
 
-                if (classPrediction.score >= 0.8) {
+                if (classPrediction.score >= 0.95) {
                     console.log(classPrediction)
-                    if (classPrediction.label === "play") {
+                    if (classPrediction.label === "Play") {
                         console.log(classPrediction)
                         playVideo()
                     }
-                    if (classPrediction.label === "stop") {
+                    if (classPrediction.label === "Stop") {
                         console.log(classPrediction)
                         stopVideo()
                     }
-                    if (classPrediction.label === "pause") {
+                    if (classPrediction.label === "Pause") {
                         console.log(classPrediction)
                         pauseVideo()
                     }
-                    if (classPrediction.label === "next") {
+                    if (classPrediction.label === "Next") {
                         console.log(classPrediction)
                         nextVideo()
                     }
-                    if (classPrediction.label === "previous") {
+                    if (classPrediction.label === "Back") {
                         console.log(classPrediction)
                         previousVideo()
-                    }
-                    if (classPrediction.label === "mute") {
-                        console.log(classPrediction)
-                        muteVideo()
-                    }
-                    if (classPrediction.label === "unmute") {
-                        console.log(classPrediction)
-                        unmuteVideo()
-                    }
-                    if (classPrediction.label === "in") {
-                        console.log(classPrediction)
-                        zoomIn()
-                    }
-                    if (classPrediction.label === "out") {
-                        console.log(classPrediction)
-                        zoomOut()
                     }
                 }
             }
         },
         {
-            includeSpectrogram: true, // in case listen should return result.spectrogram
+            includeSpectrogram: true,
             probabilityThreshold: 0.75,
             invokeCallbackOnNoiseAndUnknown: true,
-            overlapFactor: 0.5, // probably want between 0.5 and 0.75. More info in README
+            overlapFactor: 0.65,
         }
     )
-
-    // Stop the recognition in 5 seconds.
-    // setTimeout(() => recognizer.stopListening(), 5000);
 }
