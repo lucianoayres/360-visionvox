@@ -62,12 +62,12 @@ button:hover {
     background-color: rgba(0, 0, 0, 0.8); /* Dark overlay background */
     color: white;
     padding: 20px;
-    border-radius: 20px; /* Apply border radius for smoother corners */
     text-align: center;
     width: 80%;
     max-width: 500px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a slight shadow for a modern look */
     border: 5px solid transparent; /* Transparent border initially */
+    border-radius: 20px; /* Apply border radius for smoother corners */
     animation: glow 10s linear infinite; /* Adds glow animation */
 }
 
@@ -204,7 +204,7 @@ button:hover {
     position: fixed;
     bottom: 10px;
     left: 20px;
-    z-index: 3;
+    z-index: 1;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
