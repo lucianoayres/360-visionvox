@@ -1,5 +1,5 @@
 async function createModel() {
-    const recognizer = speechCommands.create("BROWSER_FFT", undefined, CHECKPOINT_URL, METADATA_URL)
+    const recognizer = speechCommands.create("BROWSER_FFT", undefined, AUDIO_CLASSIFIER_MODEL_CHECKPOINT_URL, AUDIO_CLASSIFIER_MODEL_METADATA_URL)
     await recognizer.ensureModelLoaded()
     return recognizer
 }
