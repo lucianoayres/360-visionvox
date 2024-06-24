@@ -1,2 +1,3 @@
-# Ignore the project file
+# Ignore the classifier project files
 audio-classifier-project.tm
+pose-classifier-project.tm

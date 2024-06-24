@@ -46,7 +46,7 @@ async function predict() {
         const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2)
         labelContainer.childNodes[i].innerHTML = classPrediction
 
-        if (prediction[i].probability >= 0.85) {
+        if (prediction[i].probability >= 0.9) {
             if (position !== prediction[i].className || prediction[i].className === "Idle") {
                 clearInterval(intervalId)
             }
