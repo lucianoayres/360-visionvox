@@ -29,12 +29,38 @@ const onPlayerStateChange = (event) => {
     }
 }
 
+function showTextOverlay(text) {
+    const overlay = document.getElementById("text-overlay")
+    overlay.textContent = text
+    overlay.classList.add("show")
+
+    setTimeout(() => {
+        overlay.classList.remove("show")
+    }, 1000) // Adjust the duration as needed
+}
+
 // Functions to control the player
-const playVideo = () => player.playVideo()
-const pauseVideo = () => player.pauseVideo()
-const stopVideo = () => player.stopVideo()
-const nextVideo = () => player.nextVideo()
-const previousVideo = () => player.previousVideo()
+const playVideo = () => {
+    showTextOverlay("PLAY")
+    player.playVideo()
+}
+const pauseVideo = () => {
+    showTextOverlay("PAUSE")
+    player.pauseVideo()
+}
+const stopVideo = () => {
+    showTextOverlay("STOP")
+    player.stopVideo()
+}
+const nextVideo = () => {
+    showTextOverlay("NEXT VIDEO")
+    player.nextVideo()
+}
+const previousVideo = () => {
+    showTextOverlay("PREVIOUS VIDEO")
+    player.previousVideo()
+}
+
 const muteVideo = () => player.mute()
 const unmuteVideo = () => player.unMute()
 

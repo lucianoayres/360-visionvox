@@ -20,7 +20,7 @@ async function init() {
                     score: result.scores[i],
                 }
 
-                if (classPrediction.score >= 0.95) {
+                if (classPrediction.score >= 0.96) {
                     console.log(classPrediction)
                     if (classPrediction.label === "Play") {
                         console.log(classPrediction)
