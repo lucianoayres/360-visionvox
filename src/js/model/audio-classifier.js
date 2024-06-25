@@ -6,15 +6,12 @@ async function createModel() {
 
 async function init() {
     const recognizer = await createModel()
-    const classLabels = recognizer.wordLabels() // get class labels
+    const classLabels = recognizer.wordLabels()
 
     recognizer.listen(
         (result) => {
-            const scores = result.scores // probability of prediction for each class
-            // render the probability scores per class
+            const scores = result.scores
             for (let i = 0; i < classLabels.length; i++) {
-                //const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2)
-                // labelContainer.childNodes[i].innerHTML = classPrediction
                 const classPrediction = {
                     label: classLabels[i],
                     score: result.scores[i],

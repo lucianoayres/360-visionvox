@@ -1,15 +1,5 @@
 let player
 
-const PITCH_STEP = 0.2
-const YAW_STEP = 0.2
-const FOV_STEP = 1
-const MAX_PITCH = 90
-const MIN_PITCH = -90
-const MAX_YAW = 360
-const MIN_FOV = 30
-const MAX_FOV = 120
-const INTERVAL_TIME = 0.09
-
 let pitch = 0
 let yaw = 0
 let fov = 100
