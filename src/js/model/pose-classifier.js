@@ -1,4 +1,6 @@
 let model, webcam, ctx, labelContainer, maxPredictions
+let currentState = "Idle" // Variable to keep track of current state
+let intervalId
 
 async function initPoseModel() {
     // load the model and metadata
@@ -40,33 +42,48 @@ async function predict() {
     // Prediction 2: run input through teachable machine classification model
     const prediction = await model.predict(posenetOutput)
 
-    let position = "Idle"
+    let newState = "Idle"
 
     for (let i = 0; i < maxPredictions; i++) {
         const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2)
         labelContainer.childNodes[i].innerHTML = classPrediction
 
-        if (prediction[i].probability >= 0.9) {
-            if (position !== prediction[i].className || prediction[i].className === "Idle") {
-                clearInterval(intervalId)
-            }
-
-            position = prediction[i].className
-
+        if (prediction[i].probability >= 0.95) {
             showTextOverlay(classPrediction)
 
-            if (prediction[i].className == "Up") {
+            if (prediction[i].className === "Up") {
+                newState = "Up"
+            } else if (prediction[i].className === "Down") {
+                newState = "Down"
+            } else if (prediction[i].className === "Right") {
+                newState = "Right"
+            } else if (prediction[i].className === "Left") {
+                newState = "Left"
+            }
+        }
+    }
+
+    if (newState !== currentState) {
+        clearInterval(intervalId)
+        currentState = newState
+
+        switch (currentState) {
+            case "Up":
                 moveVideoUp()
-            }
-            if (prediction[i].className == "Down") {
+                break
+            case "Down":
                 moveVideoDown()
-            }
-            if (prediction[i].className == "Right") {
+                break
+            case "Right":
                 moveVideoRight()
-            }
-            if (prediction[i].className == "Left") {
+                break
+            case "Left":
                 moveVideoLeft()
-            }
+                break
+            case "Idle":
+            default:
+                // Do nothing or stop the video movement
+                break
         }
     }
 

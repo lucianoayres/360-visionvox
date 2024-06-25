@@ -1,5 +1,19 @@
 let player
 
+const PITCH_STEP = 0.2
+const YAW_STEP = 0.2
+const FOV_STEP = 1
+const MAX_PITCH = 90
+const MIN_PITCH = -90
+const MAX_YAW = 360
+const MIN_FOV = 30
+const MAX_FOV = 120
+const INTERVAL_TIME = 0.09 // Adjusted interval time
+
+let pitch = 0
+let yaw = 0
+let fov = 100
+
 function onYouTubeIframeAPIReady() {
     player = new YT.Player("player", {
         height: "390",
@@ -82,27 +96,10 @@ document.getElementById("stopButton").addEventListener("click", stopVideo)
 document.getElementById("nextButton").addEventListener("click", nextVideo)
 document.getElementById("previousButton").addEventListener("click", previousVideo)
 
-const PITCH_STEP = 0.2
-const YAW_STEP = 0.2
-const FOV_STEP = 1
-const MAX_PITCH = 90
-const MIN_PITCH = -90
-const MAX_YAW = 360
-const MIN_FOV = 30
-const MAX_FOV = 120
-const INTERVAL_TIME = 0.005
-
-let pitch = 0
-let yaw = 0
-let fov = 100
-let intervalId
-
 const increasePitch = () => {
     if (pitch < MAX_PITCH) {
         pitch = Math.min(pitch + PITCH_STEP, MAX_PITCH)
         player.setSphericalProperties({ pitch })
-    } else {
-        clearInterval(intervalId)
     }
 }
 
@@ -110,8 +107,6 @@ const decreasePitch = () => {
     if (pitch > MIN_PITCH) {
         pitch = Math.max(pitch - PITCH_STEP, MIN_PITCH)
         player.setSphericalProperties({ pitch })
-    } else {
-        clearInterval(intervalId)
     }
 }
 
@@ -129,8 +124,6 @@ const zoomIn = () => {
     if (fov > MIN_FOV) {
         fov = Math.max(fov - FOV_STEP, MIN_FOV)
         player.setSphericalProperties({ fov })
-    } else {
-        clearInterval(intervalId)
     }
 }
 
@@ -138,8 +131,6 @@ const zoomOut = () => {
     if (fov < MAX_FOV) {
         fov = Math.min(fov + FOV_STEP, MAX_FOV)
         player.setSphericalProperties({ fov })
-    } else {
-        clearInterval(intervalId)
     }
 }
 
