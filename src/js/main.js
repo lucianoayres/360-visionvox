@@ -8,7 +8,7 @@ const MIN_PITCH = -90
 const MAX_YAW = 360
 const MIN_FOV = 30
 const MAX_FOV = 120
-const INTERVAL_TIME = 0.09 // Adjusted interval time
+const INTERVAL_TIME = 0.09
 
 let pitch = 0
 let yaw = 0
@@ -50,10 +50,9 @@ function showTextOverlay(text) {
 
     setTimeout(() => {
         overlay.classList.remove("show")
-    }, 1000) // Adjust the duration as needed
+    }, 1000)
 }
 
-// Functions to control the player
 const playVideo = () => {
     showTextOverlay("PLAY")
     player.playVideo()
@@ -76,7 +75,7 @@ const previousVideo = () => {
 }
 const muteVideo = () => player.mute()
 const unmuteVideo = () => player.unMute()
-// Functions to control the 360 player
+
 const moveVideoUp = () => {
     intervalId = setInterval(increasePitch, INTERVAL_TIME)
 }
