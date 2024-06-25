@@ -179,15 +179,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const infoButton = document.getElementById("infoButton")
     const muteButton = document.getElementById("muteButton")
 
-    // Show overlay on page load
     overlay.classList.add("visible")
 
-    // Close button event
     closeButton.addEventListener("click", () => {
         overlay.classList.remove("visible")
     })
 
-    // Info button event
     infoButton.addEventListener("click", () => {
         overlay.classList.add("visible")
     })
@@ -202,7 +199,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     })
 
-    // Close overlay if click outside of the content
     overlay.addEventListener("click", (e) => {
         if (e.target === overlay) {
             overlay.classList.remove("visible")
