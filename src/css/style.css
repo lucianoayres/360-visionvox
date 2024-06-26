@@ -21,6 +21,14 @@ body {
     height: 100%;
 }
 
+#canvas,
+#label-container {
+    position: fixed;
+    z-index: 1;
+    top: 10px;
+    left: 10px;
+}
+
 .controls {
     position: relative;
     z-index: 1; /* Ensure controls are above the video */
