@@ -27,8 +27,12 @@
             <button type="button" onclick="initPoseModel()">START POSE MODEL</button>
         </div>
 
-        <button id="infoButton" class="info-button">Info</button>
-        <button id="muteButton" class="mute-button">Mute</button>
+        <button id="infoButton" class="info-button" title="View Instructions">
+            <img src="svg/info.svg" alt="Info" id="infoIcon" />
+        </button>
+        <button id="muteButton" class="mute-button" aria-label="Mute" title="Mute">
+            <img src="svg/mute.svg" alt="Mute" id="muteIcon" />
+        </button>
 
         <div id="text-overlay" class="text-overlay"></div>
 

@@ -178,6 +178,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const closeButton = document.getElementById("closeButton")
     const infoButton = document.getElementById("infoButton")
     const muteButton = document.getElementById("muteButton")
+    const muteIcon = document.getElementById("muteIcon")
 
     overlay.classList.add("visible")
 
@@ -192,10 +193,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
     muteButton.addEventListener("click", () => {
         if (player.isMuted()) {
             unmuteVideo()
-            muteButton.textContent = "Mute"
+            muteIcon.src = "svg/mute.svg"
+            muteButton.setAttribute("aria-label", "Mute")
+            muteButton.setAttribute("title", "Mute")
         } else {
             muteVideo()
-            muteButton.textContent = "Unmute"
+            muteIcon.src = "svg/unmute.svg"
+            muteButton.setAttribute("aria-label", "Unmute")
+            muteButton.setAttribute("title", "Unmute")
         }
     })
 
