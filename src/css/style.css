@@ -114,11 +114,47 @@ button:hover {
     padding: 20px;
     text-align: left; /* Align text to the left */
     width: 80%;
-    max-width: 500px;
+    max-width: 650px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a slight shadow for a modern look */
     border: 5px solid transparent; /* Transparent border initially */
     border-radius: 20px; /* Apply border radius for smoother corners */
     animation: glow 10s linear infinite; /* Adds glow animation */
+}
+
+.instructions-wrapper {
+    display: flex;
+}
+
+.command-title {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer {
+    font-size: small;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-link {
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #ff0000;
+    text-decoration: none;
+}
+
+.github {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 @keyframes glow {
@@ -248,6 +284,10 @@ button:hover {
     font-size: 30px;
     cursor: pointer;
     color: white;
+}
+
+.close-button:hover {
+    color: #ff0000;
 }
 
 .info-button {
