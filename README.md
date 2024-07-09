@@ -2,7 +2,7 @@
 
 ## Top Priorities
 
--   Add button to start video and audio capture on the pop-up window
+-   Add event to start video and audio capture on the pop-up window
 -   Hide the video control buttons by default
 -   Add button to show video control buttons
 
@@ -13,9 +13,6 @@
 -   Style the "audio" commands display text
 -   Style the "pose" commands display text
 -   Define video control buttons position
--   Style buttons
--   Style the project name/logo
--   Style the instructions pop-up window and text
 
 ## Other Tasks
 

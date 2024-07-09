@@ -121,6 +121,20 @@ button:hover {
     animation: glow 10s linear infinite; /* Adds glow animation */
 }
 
+.logo {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 14px 0;
+}
+
+.instructions-title {
+    text-align: center;
+}
+
+.instructions-intro-text {
+    text-align: center;
+}
+
 .instructions-wrapper {
     display: flex;
 }
@@ -135,9 +149,10 @@ button:hover {
 .footer {
     font-size: small;
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
     align-items: center;
     gap: 8px;
+    padding-top: 20px;
 }
 
 .footer-link {
