@@ -137,6 +137,7 @@ button:hover {
 
 .instructions-wrapper {
     display: flex;
+    padding-bottom: 20px;
 }
 
 .command-title {
@@ -152,7 +153,9 @@ button:hover {
     justify-content: space-between;
     align-items: center;
     gap: 8px;
+
     padding-top: 20px;
+    border-top: 1px solid rgb(65, 65, 65);
 }
 
 .footer-link {
