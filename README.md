@@ -27,12 +27,18 @@ Control YouTube 360 videos with head movements and voice commands.
 -   **Voice Commands**: Control video playback with voice commands such as Play, Pause, Stop, Next, and Back.
 -   **Head Movement Controls**: Navigate 360-degree videos by moving your head in different directions (Up, Down, Left, Right).
 
+## Technologies Used
+
+-   **TensorFlow.js**: Utilized for both pose estimation (head movement tracking) and speech recognition (audio classifier model).
+-   **GitHub Actions**: Used for automated workflows, including deployment tasks.
+-   **HTML5/CSS3/JavaScript**: Front-end development technologies for building the user interface and interaction logic.
+
 ## Installation
 
 1. Clone the repository:
 
     ```
-    git clone https://github.com/your-username/360-visionvox.git
+    git clone https://github.com/lucianoayres/360-visionvox.git
     ```
 
 2. Run the application:
