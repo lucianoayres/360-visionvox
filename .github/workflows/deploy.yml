@@ -31,4 +31,4 @@ jobs:
                   git commit -m "Move content from src to root"
                   git push origin dist
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
