@@ -2,7 +2,7 @@
 
 Control YouTube 360 videos with head movements and voice commands.
 
-![Project Image](demo_image.png)
+![Project Image](https://github.com/lucianoayres/360-visionvox/assets/20209393/f93de0d7-40f8-4aa4-a80f-4c2abf2606d2)
 
 ## Table of Contents
 

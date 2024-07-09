@@ -44,16 +44,18 @@ async function predict() {
         labelContainer.childNodes[i].innerHTML = classPrediction
 
         if (prediction[i].probability >= 0.95) {
-            showTextOverlay(classPrediction)
-
             if (prediction[i].className === "Up") {
                 newState = "Up"
+                showTextOverlay(newState)
             } else if (prediction[i].className === "Down") {
                 newState = "Down"
+                showTextOverlay(newState)
             } else if (prediction[i].className === "Right") {
                 newState = "Right"
+                showTextOverlay(newState)
             } else if (prediction[i].className === "Left") {
                 newState = "Left"
+                showTextOverlay(newState)
             }
         }
     }
