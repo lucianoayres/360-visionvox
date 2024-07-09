@@ -1,4 +1,6 @@
 name: Deploy to dist branch
+permissions:
+    contents: write
 
 on:
     push:
