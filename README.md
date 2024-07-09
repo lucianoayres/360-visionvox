@@ -18,10 +18,6 @@ Control YouTube 360 videos with head movements and voice commands.
 
 360 VisionVox enhances the experience of watching YouTube 360-degree videos by enabling control through AI-powered voice commands and head movements. It utilizes TensorFlow.js for pose estimation and speech recognition, providing seamless interaction with the video player.
 
-## Demo
-
-<<TBD: Include Video Here>>
-
 ## Features
 
 -   **Voice Commands**: Control video playback with voice commands such as Play, Pause, Stop, Next, and Back.
