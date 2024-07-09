@@ -8,7 +8,7 @@ async function createModel() {
     return recognizer
 }
 
-async function init() {
+async function initAudioModel() {
     const recognizer = await createModel()
     const classLabels = recognizer.wordLabels()
 

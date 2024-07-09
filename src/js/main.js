@@ -1,3 +1,5 @@
+const DEBUG_MODE = false
+
 const PITCH_STEP = 0.2
 const YAW_STEP = 0.2
 const FOV_STEP = 1
@@ -13,6 +15,11 @@ let yaw = 0
 let fov = 100
 
 let player
+
+function init() {
+    initAudioModel()
+    initPoseModel()
+}
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player("player", {
@@ -134,6 +141,48 @@ const zoomOut = () => {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    init()
+
+    const videoControls = document.querySelector(".controls")
+    if (DEBUG_MODE) videoControls.removeAttribute("hidden")
+
+    const overlay = document.getElementById("overlay")
+    const closeButton = document.getElementById("closeButton")
+    const infoButton = document.getElementById("infoButton")
+    const muteButton = document.getElementById("muteButton")
+    const muteIcon = document.getElementById("muteIcon")
+
+    overlay.classList.add("visible")
+
+    closeButton.addEventListener("click", () => {
+        overlay.classList.remove("visible")
+    })
+
+    infoButton.addEventListener("click", () => {
+        overlay.classList.add("visible")
+    })
+
+    muteButton.addEventListener("click", () => {
+        if (player.isMuted()) {
+            unmuteVideo()
+            muteIcon.src = "svg/mute.svg"
+            muteButton.setAttribute("aria-label", "Mute")
+            muteButton.setAttribute("title", "Mute")
+        } else {
+            muteVideo()
+            muteIcon.src = "svg/unmute.svg"
+            muteButton.setAttribute("aria-label", "Unmute")
+            muteButton.setAttribute("title", "Unmute")
+        }
+    })
+
+    overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) {
+            overlay.classList.remove("visible")
+            poseCaptureWrapper.style.visibility = "visible"
+        }
+    })
+
     const setupButtonListeners = (buttonId, onMouseDown, onMouseUp) => {
         const button = document.getElementById(buttonId)
         button.addEventListener("mousedown", onMouseDown)
@@ -171,42 +220,4 @@ document.addEventListener("DOMContentLoaded", () => {
         () => (intervalId = setInterval(zoomOut, INTERVAL_TIME)),
         () => clearInterval(intervalId)
     )
-})
-
-document.addEventListener("DOMContentLoaded", (event) => {
-    const overlay = document.getElementById("overlay")
-    const closeButton = document.getElementById("closeButton")
-    const infoButton = document.getElementById("infoButton")
-    const muteButton = document.getElementById("muteButton")
-    const muteIcon = document.getElementById("muteIcon")
-
-    overlay.classList.add("visible")
-
-    closeButton.addEventListener("click", () => {
-        overlay.classList.remove("visible")
-    })
-
-    infoButton.addEventListener("click", () => {
-        overlay.classList.add("visible")
-    })
-
-    muteButton.addEventListener("click", () => {
-        if (player.isMuted()) {
-            unmuteVideo()
-            muteIcon.src = "svg/mute.svg"
-            muteButton.setAttribute("aria-label", "Mute")
-            muteButton.setAttribute("title", "Mute")
-        } else {
-            muteVideo()
-            muteIcon.src = "svg/unmute.svg"
-            muteButton.setAttribute("aria-label", "Unmute")
-            muteButton.setAttribute("title", "Unmute")
-        }
-    })
-
-    overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) {
-            overlay.classList.remove("visible")
-        }
-    })
 })

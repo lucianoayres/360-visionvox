@@ -18,7 +18,7 @@
             <div id="player"></div>
         </div>
 
-        <div class="controls">
+        <div class="controls" hidden>
             <button id="playButton" aria-label="Play Video">Play</button>
             <button id="pauseButton" aria-label="Pause Video">Pause</button>
             <button id="stopButton" aria-label="Stop Video">Stop</button>
@@ -30,7 +30,7 @@
             <button id="rightButton" aria-label="Right">Right</button>
             <button id="zoomInButton">Zoom In</button>
             <button id="zoomOutButton">Zoom Out</button>
-            <button type="button" onclick="init()">Start</button>
+            <button type="button" onclick="initAudioModel()">Start</button>
             <button type="button" onclick="initPoseModel()">START POSE MODEL</button>
         </div>
 
@@ -131,10 +131,10 @@
             </div>
         </div>
 
-        <!-- POSE CLASSIFIER ELEMENTS-->
-        <div><canvas id="canvas"></canvas></div>
-        <div id="label-container"></div>
-        <!-- POSE CLASSIFIER ELEMENTS-->
+        <div class="pose-capture-wrapper">
+            <div class="camera-wrapper"><canvas id="canvas"></canvas></div>
+            <div id="label-container"></div>
+        </div>
 
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
