@@ -15,10 +15,14 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v4
 
-            - name: Switch to dist branch
+            - name: Delete remote dist branch
               run: |
-                  git fetch
-                  git switch dist || git checkout -b dist
+                  git push origin --delete dist || true
+
+            - name: Create and switch to new dist branch
+              run: |
+                  git checkout -b dist
+                  git push --set-upstream origin dist
 
             - name: Move content from src to root
               run: |
