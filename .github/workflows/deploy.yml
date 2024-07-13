@@ -15,6 +15,10 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v4
 
+            - name: Delete local dist branch
+              run: |
+                  git branch -D dist || true
+
             - name: Delete remote dist branch
               run: |
                   git push origin --delete dist || true
